@@ -1,6 +1,5 @@
--- Aggregate total revenue for music artists, albums, and genres for each customer country and city
--- Compare country of genre origin with country of purchase
--- Clean up data for import into Power BI:
+-- Aggregate total revenue for music artists, albums, and genres for each customer, country, and city
+-- Clean up data for import into Power BI
 
 select
   i.BillingCountry,

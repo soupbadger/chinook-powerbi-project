@@ -10,6 +10,7 @@ This project uses SQL and Power BI to analyze global revenue from the **Chinook 
    - Total revenue calculated per country, city, genre, artist, and album
 
 **SQL Query**  
+
 The following query organizes and filters data for Power BI import
 
 ```sql

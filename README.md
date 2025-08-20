@@ -1,6 +1,6 @@
-#This project uses SQL and Power BI to analyze global revenue from the **Chinook sample database**
+# This project uses SQL and Power BI to analyze global revenue from the **Chinook sample database**
 
-##SQL
+## SQL
 
 **Filtering & cleaning**  
    - Excluded non-music media (e.g., videos)  
@@ -43,24 +43,30 @@ ORDER BY
   i.BillingCountry,
   g.Name;
 ```
-##Power BI
+
+---
+
+
+
+## Power BI
 
 ### Total Revenue by Country
 ![Country Revenue Map](images/country_revenue.png)
-*Clicking a country filters the data to show genre revenue within that country*
+*Clicking a country filters the data to show genre revenue within that country*  
 *Drillthrough goes to the City Revenue Map*
-
+<br>
 ### Total Revenue by City
 ![City Revenue Map](images/city_revenue.png)
-*After drilling through from the country map, this map shows city revenue.*
+*After drilling through from the country map, this map shows city revenue.*  
 *Drillthrough goes to the Genre Revenue Pie*
-
-
+<br>
 ### Revenue by Genre, Artist, and Album
 ![Genre Revenue Pie](images/genre_pie.png)
 *Pie chart showing the most profitable genre, artist, and album revenue.*
-
-
+<br>
+### Power BI Report Preview
+Here is a gif demonstrating the report.
+![Power BI Report Demo](images/PBIDesktop5oRCVeoRM3.gif)
 
 
 

@@ -2,15 +2,15 @@
 
 This project uses SQL and Power BI to analyze global revenue from the **Chinook sample database**
 
-1. **Filtering & cleaning**  
+**Filtering & cleaning**  
    - Excluded non-music media (e.g., videos)  
    - Removed non-music genres
 
-2. **Aggregating revenue**  
+**Aggregating revenue**  
    - Total revenue calculated per country, city, genre, artist, and album
 
-3. **SQL Query**  
-The following SQL organizes and filters data for Power BI import
+**SQL Query**  
+The following query organizes and filters data for Power BI import
 
 ```sql
 SELECT

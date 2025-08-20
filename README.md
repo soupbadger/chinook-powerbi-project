@@ -42,3 +42,14 @@ GROUP BY
 ORDER BY
   i.BillingCountry,
   g.Name;
+```
+# Power BI
+
+
+
+
+
+
+
+
+

@@ -66,7 +66,7 @@ ORDER BY
 <br>
 ### Power BI Report Preview
 Here is a gif demonstrating the report.
-![Power BI Report Demo](images/PBIDesktop5oRCVeoRM3.gif)
+![Power BI Report Demo](images/PBI_Demo.gif)
 
 
 

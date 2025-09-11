@@ -1,73 +1,91 @@
-# This project uses SQL and Power BI to analyze global revenue from the **Chinook sample database**
+# Chinook Power BI Project
+
+---
+
+An **SQL** and **Power BI** project that analyzes and visualizes sales, customer, and artist data from the Chinook sample database. Designed to demonstrate data modeling, DAX measures, and interactive reporting capabilities.
+
+---
+
+## Features
+
+- Connects to the Chinook database and builds interactive Power BI reports
+- Uses DAX measures for key metrics like revenue, profit, and ROI
+- Provides drill-through and slicer filtering for insights at multiple levels
+- Visualizes customer and sales trends across different dimensions
+
+---
+
+## Project Background
+This project was a learning exercise to practice: 
+- SQL sorting and filtering
+- Data modeling
+- DAX calculations
+- Interactive reporting in Power BI
+
+---
 
 ## SQL
 
-**Filtering & cleaning**  
-   - Excluded non-music media (e.g., videos)  
-   - Removed non-music genres
-
-**Aggregating revenue**  
-   - Total revenue calculated per country, city, genre, artist, and album
-
-**SQL Query**  
-
-The following query organizes and filters data for Power BI import
+A sample query used to aggregate revenue per artist, album, genre, and customer location:
 
 ```sql
-SELECT
-  i.BillingCountry,
-  i.BillingCity,
-  g.Name AS Genre,
-  art.Name AS Artist,
-  alb.Title AS AlbumTitle,
-  SUM(t.UnitPrice * il.Quantity) AS TotalRevenue
-FROM
-  track t
-  JOIN invoiceline il ON t.TrackId = il.TrackId
-  JOIN invoice i ON il.InvoiceId = i.InvoiceId
-  JOIN mediatype m ON t.MediaTypeId = m.MediaTypeID
-  JOIN album alb ON t.AlbumId = alb.AlbumId
-  JOIN artist art ON art.ArtistId = alb.ArtistId
-  JOIN genre g ON t.GenreId = g.GenreId
-  -- Exclude video files (MediaTypeId = 3) and non-music genres (GenreId 18-23)
-WHERE
-  t.MediaTypeId != 3
-  AND g.GenreId NOT BETWEEN 18 AND 23
-GROUP BY
-  i.BillingCountry,
-  i.BillingCity,
-  g.Name,
-  art.Name,
-  alb.Title
-ORDER BY
-  i.BillingCountry,
-  g.Name;
+  SELECT
+    i.BillingCountry,
+    i.BillingCity,
+    g.Name AS Genre,
+    art.Name AS Artist,
+    alb.Title AS AlbumTitle,
+    SUM(t.UnitPrice * il.Quantity) AS TotalRevenue
+  FROM
+    track t
+    JOIN invoiceline il ON t.TrackId = il.TrackId           
+    JOIN invoice i ON il.InvoiceId = i.InvoiceId            
+    JOIN album alb ON t.AlbumId = alb.AlbumId              
+    JOIN artist art ON art.ArtistId = alb.ArtistId         
+    JOIN genre g ON t.GenreId = g.GenreId                  
+  WHERE
+    t.MediaTypeId != 3                                     -- exclude video files
+    AND g.GenreId NOT BETWEEN 18 AND 23                    -- exclude non-music genres
+  GROUP BY
+    i.BillingCountry,
+    i.BillingCity,
+    g.Name,
+    art.Name,
+    alb.Title
+  ORDER BY
+    i.BillingCountry,
+    g.Name;
 ```
 
+
 ---
+
 
 
 
 ## Power BI
 
 ### Total Revenue by Country
-![Country Revenue Map](images/country_revenue.png)
 *Clicking a country filters the data to show genre revenue within that country*  
-*Drillthrough goes to the City Revenue Map*
-<br>
+![Country Revenue Map](images/country_revenue.png)
+
 ### Total Revenue by City
+*After drilling through from the country map*
 ![City Revenue Map](images/city_revenue.png)
-*After drilling through from the country map, this map shows city revenue.*  
-*Drillthrough goes to the Genre Revenue Pie*
-<br>
+
 ### Revenue by Genre, Artist, and Album
+*After drilling through from the city map*
+Pie chart showing the most profitable genre, artist, and album revenue.
 ![Genre Revenue Pie](images/genre_pie.png)
-*Pie chart showing the most profitable genre, artist, and album revenue.*
-<br>
-### Power BI Report Preview
-Here is a gif demonstrating the report.
+
+### Power BI Report Demo GIF
 ![Power BI Report Demo](images/PBI_Demo.gif)
 
+--- 
+
+## Acknowledgements
+
+- Chinook Sample Database: https://github.com/lerocha/chinook-database
 
 
 

@@ -1,72 +1,36 @@
-# Chinook Power BI Project
+# Global Sales Analysis for the Chinook Digital Music Store
+
+An **SQL** and **Power BI** project that analyzes and visualizes sales data from the Chinook sample database. This business intelligence dashboard was designed to answer key business questions and provide actionable insights for marketing and sales strategy. It demonstrates end-to-end skills in data modeling, SQL querying, DAX measures, and interactive reporting.
 
 ---
 
-An **SQL** and **Power BI** project that analyzes and visualizes sales, customer, and artist data from the Chinook sample database. Designed to demonstrate data modeling, DAX measures, and interactive reporting capabilities.
+## The Business Problem
+
+The executive team at the Chinook Music Store needs to make data-driven decisions for their upcoming quarterly marketing budget. They need to understand which geographic markets are generating the most revenue, which musical genres are most popular, and which artists are the top performers. The goal is to allocate marketing spend effectively to maximize Return on Investment (ROI).
 
 ---
 
-## Features
+## Actionable Insights & Recommendations
 
-- Connects to the Chinook database and builds interactive Power BI reports
-- Uses DAX measures for key metrics like revenue, profit, and ROI
-- Provides drill-through and slicer filtering for insights at multiple levels
-- Visualizes customer and sales trends across different dimensions
+Based on the analysis, several key insights were uncovered, leading to the following strategic recommendations:
 
----
+#### **Insights:**
+* While the **USA is the largest market** by total revenue, countries like **Brazil, Germany, and Canada** show significant sales and high customer engagement.
+* Analysis of genre performance reveals that **Rock is the dominant category**, accounting for a substantial portion of total sales across all major regions.
+* Drilling down into artist performance, legacy rock bands like **Iron Maiden, U2, and Led Zeppelin** remain top revenue drivers for the store.
 
-## Project Background
-This project was a learning exercise to practice: 
-- SQL sorting and filtering
-- Data modeling
-- DAX calculations
-- Interactive reporting in Power BI
+#### **Recommendations:**
+* **Targeted Marketing Campaign:** Allocate **15% of the marketing budget** to a digital campaign focused on the Rock/Metal genres in **Brazil and Germany**, where customer spending and genre popularity are high.
+* **Inventory & Promotions:** Ensure the digital catalog for top-performing rock artists is robust and consider running a **"Classic Rock Legends" promotion** to capitalize on existing, proven demand.
 
 ---
 
-## SQL
+## Power BI Report Demo
 
-A sample query used to aggregate revenue per artist, album, genre, and customer location:
-
-```sql
-  SELECT
-    i.BillingCountry,
-    i.BillingCity,
-    g.Name AS Genre,
-    art.Name AS Artist,
-    alb.Title AS AlbumTitle,
-    SUM(t.UnitPrice * il.Quantity) AS TotalRevenue
-  FROM
-    track t
-    JOIN invoiceline il ON t.TrackId = il.TrackId           
-    JOIN invoice i ON il.InvoiceId = i.InvoiceId            
-    JOIN album alb ON t.AlbumId = alb.AlbumId              
-    JOIN artist art ON art.ArtistId = alb.ArtistId         
-    JOIN genre g ON t.GenreId = g.GenreId                  
-  WHERE
-    t.MediaTypeId != 3                                     -- exclude video files
-    AND g.GenreId NOT BETWEEN 18 AND 23                    -- exclude non-music genres
-  GROUP BY
-    i.BillingCountry,
-    i.BillingCity,
-    g.Name,
-    art.Name,
-    alb.Title
-  ORDER BY
-    i.BillingCountry,
-    g.Name;
-```
-
-
----
-
-
-
-
-## Power BI
+The interactive dashboard allows for drilling down from a global overview to specific, granular details.
 
 ### Total Revenue by Country
-*Clicking a country filters the data to show genre revenue within that country*  
+*Clicking a country filters the data to show genre revenue within that country*
 ![Country Revenue Map](images/country_revenue.png)
 
 ### Total Revenue by City
@@ -78,21 +42,48 @@ A sample query used to aggregate revenue per artist, album, genre, and customer 
 Pie chart showing the most profitable genre, artist, and album revenue.
 ![Genre Revenue Pie](images/genre_pie.png)
 
-### Power BI Report Demo GIF
+### Interactive Demo GIF
 ![Power BI Report Demo](images/PBI_Demo.gif)
 
---- 
+---
 
-## Acknowledgements
+## Technical Features
 
-- Chinook Sample Database: https://github.com/lerocha/chinook-database
+-   Connects to the Chinook database and builds interactive Power BI reports
+-   Uses DAX measures for key metrics like revenue, profit, and ROI
+-   Provides drill-through and slicer filtering for insights at multiple levels
+-   Visualizes customer and sales trends across different dimensions
 
+---
 
+## SQL Query Sample
 
+A sample query used to aggregate revenue per artist, album, genre, and customer location for ingestion into Power BI:
 
-
-
-
-
-
-
+```sql
+ SELECT
+   i.BillingCountry,
+   i.BillingCity,
+   g.Name AS Genre,
+   art.Name AS Artist,
+   alb.Title AS AlbumTitle,
+   SUM(t.UnitPrice * il.Quantity) AS TotalRevenue
+ FROM
+   track t
+   JOIN invoiceline il ON t.TrackId = il.TrackId          
+   JOIN invoice i ON il.InvoiceId = i.InvoiceId            
+   JOIN album alb ON t.AlbumId = alb.AlbumId               
+   JOIN artist art ON art.ArtistId = alb.ArtistId        
+   JOIN genre g ON t.GenreId = g.GenreId                  
+ WHERE
+   t.MediaTypeId != 3                                      -- exclude video files
+   AND g.GenreId NOT BETWEEN 18 AND 23                     -- exclude non-music genres
+ GROUP BY
+   i.BillingCountry,
+   i.BillingCity,
+   g.Name,
+   art.Name,
+   alb.Title
+ ORDER BY
+   i.BillingCountry,
+   g.Name;

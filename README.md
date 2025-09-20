@@ -88,3 +88,15 @@ A sample query used to aggregate revenue per artist, album, genre, and customer 
  ORDER BY
    i.BillingCountry,
    g.Name;
+
+   
+## Acknowledgements
+
+Assistance with coding, Excel formulas, and Python scripting was obtained from AI tools including:
+
+- **ChatGPT (GPT-5-mini)**
+- **Gemini (2.5 Flash)**
+- **Claude (Sonnet 4)** — provided the most accurate and complete guidance
+ 
+
+All code was actively developed and refined with human oversight — issues were identified and corrected during the process.

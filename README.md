@@ -88,7 +88,7 @@ A sample query used to aggregate revenue per artist, album, genre, and customer 
  ORDER BY
    i.BillingCountry,
    g.Name;
-
+```
    
 ## Acknowledgements
 

@@ -39,6 +39,7 @@ The interactive dashboard allows for drilling down from a global overview to spe
 
 ### Revenue by Genre, Artist, and Album
 *After drilling through from the city map*
+
 Pie chart showing the most profitable genre, artist, and album revenue.
 ![Genre Revenue Pie](images/genre_pie.png)
 
